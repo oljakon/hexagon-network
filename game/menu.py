@@ -7,11 +7,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 import cocos
-import pyglet
-
-from pyglet import image
 from pyglet.gl import *
-from pyglet import font
 
 from cocos.actions import *
 from cocos.menu import Menu, MenuItem, zoom_in, zoom_out, fixedPositionMenuLayout
@@ -28,7 +24,7 @@ class SavedGames(Layer):
     is_event_handler = True
 
     def __init__(self):
-        super(SavedGames, self).__init__()
+        super().__init__()
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         self.button_exit = [1200, 650, 1265, 715]

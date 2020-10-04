@@ -1,9 +1,4 @@
-import cocos
-import pyglet
-from cocos.director import director
-from cocos.scene import Scene
 from game import *
-from cocos.layer import *                
 from cocos.sprite import Sprite
 
 class Session():
@@ -51,9 +46,9 @@ class Session():
                     chart.Chart().get_cell(i, j).army.delete_podsvet()
                     chart.Chart().get_cell(i, j).army.sprite.kill()
                     army = chart.Chart().get_cell(i, j).army
-                    army.mas_sprite = ['peasant' + str(army.player) + '.png',   \
-                           'priest' + str(army.player) + '.png',    \
-                           'soldier' + str(army.player) + '.png',   \
+                    army.mas_sprite = ['peasant' + str(army.player) + '.png',
+                           'priest' + str(army.player) + '.png',
+                           'soldier' + str(army.player) + '.png',
                            'knight' + str(army.player) + '.png']
         
                     army.type_army_global = army.army[0].type_unit
@@ -86,7 +81,7 @@ class Session():
         if not flag_isplaying:
             for i in range(len(chart.Chart().cells)):
                 for j in range(len(chart.Chart().cells[0])):
-                    if chart.Chart().get_cell(i, j) and\
+                    if chart.Chart().get_cell(i, j) and \
                        chart.Chart().get_cell(i, j).army and \
                        chart.Chart().get_cell(i, j).army.player == self.move_player:
                         chart.Chart().get_cell(i, j).army.change_player(0)
