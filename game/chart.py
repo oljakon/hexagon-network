@@ -92,6 +92,7 @@ class Chart(HexMapLayer, metaclass=Singleton):
     def update(self, name, info, size, cells):
         HexMapLayer.__init__(self, name, info, size, cells)
 
+
     
 class BgLayer(ColorLayer):
     """

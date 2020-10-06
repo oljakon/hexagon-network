@@ -8,6 +8,8 @@ from cocos.director import director
 from cocos.scene import Scene
 from cocos.layer import MultiplexLayer
 from game import *
+from game import logic
+from game.logic import *
 
 from sys import platform
 
@@ -70,7 +72,7 @@ class MouseDisplay(cocos.layer.Layer):
 
                     if entered_cell.army and entered_cell.army.player == game_session.move_player and not game_session.is_moving:
                         """добавление подсветки армии при нажатии на нее"""
-                        entered_cell.army.add_podsvet()
+                        Logic.add_podsvet(entered_cell.i, entered_cell.j)
                         game_session.is_moving = True
                         game_session.last_entered_cell = entered_cell
 
@@ -80,13 +82,13 @@ class MouseDisplay(cocos.layer.Layer):
                         
                         if not chart.Chart().get_cell(i, j).army.step(i, j, i1, j1):
                             """нажатие на неподсвеченную клетку, для которой работает подсветка"""
-                            chart.Chart().get_cell(i, j).army.delete_podsvet()
+                            Logic.delete_podsvet(i, j)
                             game_session.is_moving = False
                             game_session.last_entered_cell = None
 
                         else:
                             """передвижение армии (внутри передвижения удаляется подсветка)"""
-                            chart.Chart().get_cell(i, j).army.move_army(i1, j1)
+                            Logic.move_army(i, j, i1, j1)
                             game_session.is_moving = False
                             game_session.last_entered_cell = None
 

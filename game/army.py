@@ -292,7 +292,7 @@ class Army:
                 # Сражение двух армий
                 else:
                     mas_army = [1,2]
-                    attack_army1, defense_army1, attack_army2, defense_army2 = 0,0,0,0
+                    attack_army1, defense_army1, attack_army2, defense_army2 = 0, 0, 0, 0
 
                     for i in range(len(army1.army)):
                         attack_army1 += army1.army[i].attack
@@ -374,7 +374,7 @@ class Army:
 
     def __attack(self, army1, army2):
         """Сражение двух армий, когда армия1 атакует армию2"""
-        attack, defense, attack_hp = 0,0,0
+        attack, defense, attack_hp = 0, 0, 0
         for i in range(len(army1.army)):
             attack += army1.army[i].attack
         for i in range(len(army2.army)):
