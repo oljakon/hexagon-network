@@ -18,3 +18,8 @@ class Logic:
     def delete_podsvet(i ,j):
         chart.Chart().get_cell(i, j).army.delete_podsvet()
         Network.delete_podsvet(i, j)
+
+    @staticmethod
+    def enter_ok(hiring, entered_cell):
+        hiring.enter_ok(entered_cell.town.type_city)
+        Network.buyArmy(entered_cell)

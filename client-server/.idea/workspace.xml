@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="34407b1a-d8cf-48ee-a77c-4a81f0becf25" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jHaagIWLD1Ct7hjU8DzFOxB27M" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RunManager" selected="Python.server">
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="client" type="PythonConfigurationType" />
+      <toRun name="server" type="PythonConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <configuration name="client" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <module name="client-server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="PythonConfigurationType" factoryName="Python" singleton="false">
+      <module name="client-server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.client" />
+      <item itemvalue="Python.server" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34407b1a-d8cf-48ee-a77c-4a81f0becf25" name="Default Changelist" comment="" />
+      <created>1603463535944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603463535944</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="104" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603464270946">
+      <screen x="0" y="23" width="1280" height="716" />
+    </state>
+    <state x="104" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.716@0.23.1280.716" timestamp="1603464270945" />
+    <state x="402" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604068939178">
+      <screen x="0" y="23" width="1280" height="714" />
+    </state>
+    <state x="402" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1280.714@0.23.1280.714" timestamp="1604068939178" />
+    <state width="1259" height="176" key="GridCell.Tab.0.bottom" timestamp="1604168955582">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="176" key="GridCell.Tab.0.bottom/0.23.1280.712@0.23.1280.712" timestamp="1604168955582" />
+    <state width="1259" height="176" key="GridCell.Tab.0.bottom/0.23.1280.714@0.23.1280.714" timestamp="1604160675622" />
+    <state width="1259" height="176" key="GridCell.Tab.0.bottom/0.23.1280.716@0.23.1280.716" timestamp="1603472734901" />
+    <state width="1259" height="176" key="GridCell.Tab.0.bottom/0.23.1280.717@0.23.1280.717" timestamp="1603549917515" />
+    <state width="1259" height="176" key="GridCell.Tab.0.center" timestamp="1604168955581">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="176" key="GridCell.Tab.0.center/0.23.1280.712@0.23.1280.712" timestamp="1604168955581" />
+    <state width="1259" height="176" key="GridCell.Tab.0.center/0.23.1280.714@0.23.1280.714" timestamp="1604160675621" />
+    <state width="1259" height="176" key="GridCell.Tab.0.center/0.23.1280.716@0.23.1280.716" timestamp="1603472734901" />
+    <state width="1259" height="176" key="GridCell.Tab.0.center/0.23.1280.717@0.23.1280.717" timestamp="1603549917514" />
+    <state width="1259" height="176" key="GridCell.Tab.0.left" timestamp="1604168955580">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="176" key="GridCell.Tab.0.left/0.23.1280.712@0.23.1280.712" timestamp="1604168955580" />
+    <state width="1259" height="176" key="GridCell.Tab.0.left/0.23.1280.714@0.23.1280.714" timestamp="1604160675621" />
+    <state width="1259" height="176" key="GridCell.Tab.0.left/0.23.1280.716@0.23.1280.716" timestamp="1603472734900" />
+    <state width="1259" height="176" key="GridCell.Tab.0.left/0.23.1280.717@0.23.1280.717" timestamp="1603549917514" />
+    <state width="1259" height="176" key="GridCell.Tab.0.right" timestamp="1604168955581">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="176" key="GridCell.Tab.0.right/0.23.1280.712@0.23.1280.712" timestamp="1604168955581" />
+    <state width="1259" height="176" key="GridCell.Tab.0.right/0.23.1280.714@0.23.1280.714" timestamp="1604160675622" />
+    <state width="1259" height="176" key="GridCell.Tab.0.right/0.23.1280.716@0.23.1280.716" timestamp="1603472734901" />
+    <state width="1259" height="176" key="GridCell.Tab.0.right/0.23.1280.717@0.23.1280.717" timestamp="1603549917515" />
+    <state width="1259" height="219" key="GridCell.Tab.1.bottom" timestamp="1604166939231">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="219" key="GridCell.Tab.1.bottom/0.23.1280.712@0.23.1280.712" timestamp="1604166939231" />
+    <state width="1259" height="219" key="GridCell.Tab.1.center" timestamp="1604166939231">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="219" key="GridCell.Tab.1.center/0.23.1280.712@0.23.1280.712" timestamp="1604166939231" />
+    <state width="1259" height="219" key="GridCell.Tab.1.left" timestamp="1604166939230">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="219" key="GridCell.Tab.1.left/0.23.1280.712@0.23.1280.712" timestamp="1604166939230" />
+    <state width="1259" height="219" key="GridCell.Tab.1.right" timestamp="1604166939231">
+      <screen x="0" y="23" width="1280" height="712" />
+    </state>
+    <state width="1259" height="219" key="GridCell.Tab.1.right/0.23.1280.712@0.23.1280.712" timestamp="1604166939231" />
+    <state x="319" y="213" key="com.intellij.ide.util.TipDialog" timestamp="1603463539423">
+      <screen x="0" y="23" width="1280" height="716" />
+    </state>
+    <state x="319" y="213" key="com.intellij.ide.util.TipDialog/0.23.1280.716@0.23.1280.716" timestamp="1603463539423" />
+  </component>
+</project>

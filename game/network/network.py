@@ -1,3 +1,5 @@
+from game.chart import *
+
 class Network:
 
     # @staticmethod
@@ -17,8 +19,8 @@ class Network:
         print('delete podsvet for cell ' + str(i) + ' ' + str(j))
 
     @staticmethod
-    def buyArmy(cellPurchase, curArmy):
-        print('where is updated army - ' + cellPurchase + ' current army"s statment -' + curArmy)
+    def buyArmy(cell):
+        print('where is updated army - ' + str(cell.i) + ' ' + str(cell.j))
 
     # def attackArmy(self, army, winner):
     #     self.__send('winner player- ' + winner + 'army in cell' - army)

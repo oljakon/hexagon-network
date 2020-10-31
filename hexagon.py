@@ -114,7 +114,7 @@ class MouseDisplay(cocos.layer.Layer):
                 elif button in PLUS:
                     self.hiring.enter_plus(button, self.entered_cell.town.type_city)
                 elif button == OK:
-                    self.hiring.enter_ok(self.entered_cell.town.type_city)
+                    Logic.enter_ok(self.hiring, self.entered_cell)
                     self.hiring.close_window()
                     self.menu = False
                     
