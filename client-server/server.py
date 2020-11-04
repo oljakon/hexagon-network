@@ -20,10 +20,10 @@ def sigint_handler(signum, frame):
     del socket_list
     exit(0)
 
-
+signal.signal(signal.SIGINT, sigint_handler)
 while 1:
     #print("sl = ", socket_list)
-    signal.signal(signal.SIGINT, sigint_handler)
+    
     sockets_to_read, _, _ = select.select(socket_list, [], [])
 
     #print(r, w, e)
