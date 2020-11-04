@@ -12,24 +12,24 @@ socket_list = [s]
 
 while 1:
     #print("sl = ", socket_list)
-    r,w,e = select.select(socket_list, [], [])
+    sockets_to_read, _, _ = select.select(socket_list, [], [])
 
     #print(r, w, e)
-    for read in r:
+    for sock in sockets_to_read:
         #print(r, read == s)
-        if read == s:
+        if sock == s:
             conn, addr = s.accept()
             socket_list.append(conn)
         else:
             #conn = None
             data = ''
-            data = read.recv(1000000)
+            data = sock.recv(1000000)
             print('client', data)
-            read.send(data)
+            sock.send(data)
         
             if data == b'finish':
-                read.close()
-                socket_list.remove(read)
+                sock.close()
+                socket_list.remove(sock)
                
 
             try:
