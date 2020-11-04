@@ -1,8 +1,11 @@
 import socket
 import select
+import signal
 from HexagonProtocol import HexagonProtocol
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
 host = ''
 port = 8007
 s.bind((host, port))
@@ -10,8 +13,17 @@ s.listen(4)
 socket_list = [s]
 
 
+def sigint_handler(signum, frame):
+    global socket_list
+    for sock in socket_list:
+        sock.close()
+    del socket_list
+    exit(0)
+
+
 while 1:
     #print("sl = ", socket_list)
+    signal.signal(signal.SIGINT, sigint_handler)
     sockets_to_read, _, _ = select.select(socket_list, [], [])
 
     #print(r, w, e)
@@ -39,3 +51,4 @@ while 1:
         
 
 
+s.close()
