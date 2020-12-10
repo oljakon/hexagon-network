@@ -55,7 +55,7 @@ class SavedGames(Layer):
         self.add(chart.BgLayer())
         self.add(chart.Chart())
         self.add(ButtonMap())
-        Top_Window().reinit(1) 
+        Top_Window().reinit(2)
 
 
 class Rules(Layer):
@@ -215,8 +215,9 @@ class NewGame(Layer):
     """Слой для меню для загрузки новой игры"""
     is_event_handler = True
 
-    def __init__(self):
+    def __init__(self, move_player):
         super(NewGame, self).__init__()
+        self.move_player = move_player
         self.go(1)
 
     def on_mouse_press (self, x, y, buttons, modifiers):
@@ -243,7 +244,7 @@ class NewGame(Layer):
         if new:
             # Сюда программа зайдет один раз при инициализации слоев MultiplexLayer
             self.map_layer = chart.generate(data, SIZE)
-            Top_Window(1) # Инициализируем Top_Window впервые           
+            Top_Window(self.move_player) # Инициализируем Top_Window впервые
         else:
             self.map_layer = chart.generate(data, SIZE, 0, 0) # Делаем апдейт
             
@@ -256,7 +257,7 @@ class NewGame(Layer):
         self.add(chart.BgLayer())
         self.add(chart.Chart())
         self.add(ButtonMap())
-        Top_Window().reinit(1)
+        Top_Window().reinit()
 
 
 class GameRules():
@@ -346,10 +347,12 @@ class Top_Window(metaclass=chart.Singleton):
 
     def __init__(self, move):
         super(Top_Window, self).__init__()
-        self.reinit(move)
+        self.move_player = move
+        self.reinit()
         
-    def reinit(self, move):
+    def reinit(self):
         """Происходит реинициализация класса по заданному ходу"""
+        move = self.move_player
         self.bg = Sprite("light95.png")
         self.bg.scale_x = 0.09
         self.bg.scale_y = 0.115
@@ -362,6 +365,7 @@ class Top_Window(metaclass=chart.Singleton):
         self.mas_sprite = []
         
         self.move = [(move-1) if move > 1 else 1, move]
+        print(move)
         self.castle_last_turn = Sprite("castle" + str(self.move[0]) + ".png")
         self.castle_next_turn = Sprite("castle" + str(self.move[1]) + ".png")
 
