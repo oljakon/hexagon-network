@@ -365,7 +365,6 @@ class Top_Window(metaclass=chart.Singleton):
         self.mas_sprite = []
         
         self.move = [(move-1) if move > 1 else 1, move]
-        print(move)
         self.castle_last_turn = Sprite("castle" + str(self.move[0]) + ".png")
         self.castle_next_turn = Sprite("castle" + str(self.move[1]) + ".png")
 
