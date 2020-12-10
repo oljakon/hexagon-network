@@ -101,4 +101,3 @@ ENV/
 
 #IDE minor files
 *.idea*
-/client-server/.idea/
