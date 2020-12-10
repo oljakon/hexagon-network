@@ -174,9 +174,10 @@ class MainMenu(Menu):
         item2 = MenuItem('Загрузить сохраненнную игру', self.saved_game)
         item3 = MenuItem('Правила игры', self.rules)
         item4 = MenuItem('Информация', self.info)
-        self.create_menu([item1, item2, item3, item4], zoom_in(), zoom_out(),
+        item5 = MenuItem('Выход', self.on_quit)
+        self.create_menu([item1, item2, item3, item4, item5], zoom_in(), zoom_out(),
                          layout_strategy=fixedPositionMenuLayout(
-                             [(650, 450), (650, 350), (650, 250), (650, 150)]))
+                             [(650, 450), (650, 350), (650, 250), (650, 150), (650, 50)]))
 
     def new_game(self):
         self.parent.layers[4].go()
@@ -191,6 +192,9 @@ class MainMenu(Menu):
 
     def info(self):
         self.parent.switch_to(3)
+
+    def on_quit(self):
+        exit(0)
 
 
 class BackgroundLayer(ColorLayer):

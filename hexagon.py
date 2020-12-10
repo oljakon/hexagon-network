@@ -23,7 +23,7 @@ class MouseDisplay(cocos.layer.Layer):
         self.rules = False
         self.endgame = False
         
-    def on_key_press(self, key, modifiers):
+    def on_key_press(self, key, _):
         """Обработка нажатий на клавиатуру"""
         if key == pyglet.window.key.ENTER:
             game_session.change_move()
@@ -37,7 +37,7 @@ class MouseDisplay(cocos.layer.Layer):
         if key == pyglet.window.key.MOD_WINDOWS:
             top_window.exit_animation()
 
-    def on_mouse_press (self, x, y, buttons, modifiers):
+    def on_mouse_press(self, x, y, buttons, _):
         """Обработка нажатий на мышь"""
 
         if top_window.mas_sprite:
