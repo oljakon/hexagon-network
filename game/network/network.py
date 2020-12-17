@@ -56,7 +56,7 @@ class Network:
             dict_get = HexagonProtocol.getDataFromByteStr(data)
             print('с сервака:', dict_get)
             if dict_get['type'] == 'move':
-                self.sig_move_army(dict_get['data'])
+                self.sig_move_army.emit(dict_get['data'])
                 # if data == self.player:
                 #     self.unlock_player.emit()
                 #     return
