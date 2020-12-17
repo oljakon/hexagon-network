@@ -37,9 +37,8 @@ class Logic:
         hiring.enter_ok(entered_cell.town.type_city)
         Network.buyArmy(entered_cell)
 
-    @staticmethod
-    def wait_other_player():
-        Network.wait_server()
+    def wait_other_player(self):
+        self.network.wait_server()
 
     @staticmethod
     def end_move():

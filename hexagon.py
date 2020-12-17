@@ -8,7 +8,7 @@ from cocos.director import director
 from cocos.scene import Scene
 from cocos.layer import MultiplexLayer, pyglet
 from cocos.layer import *
-from game import session
+from game import session, city
 from game import menu
 from game.menu import *
 from game.logic import *
@@ -38,6 +38,9 @@ class MouseDisplay(cocos.layer.Layer):
         
     def on_key_press(self, key, _):
         """Обработка нажатий на клавиатуру"""
+        if self.waiting_other_players:
+            self.logic.wait_other_player()
+
         if not self.waiting_other_players:
             if key == pyglet.window.key.ENTER:
                 self.waiting_other_players = True

@@ -47,16 +47,18 @@ class Network:
         self.s.close()
 
     def wait_server(self, type_action=""):
-        data = self.s.recv(1000000)
-        if type_action == 'start':
-            return data
-        else:
-            while True:
-                if data == 'move army':
-                    self.sig_move_army([])
-                if data == self.player:
-                    self.unlock_player.emit()
-                    return
+
+        # if type_action == 'start':
+        #     return data
+        # else:
+        while True:
+            data = self.s.recv(1000000)
+            dict_get = HexagonProtocol.getDataFromByteStr(data)
+            if dict_get['type'] == 'move':
+                self.sig_move_army(dict_get['data'])
+                # if data == self.player:
+                #     self.unlock_player.emit()
+                #     return
 
     def end_move(self):
         send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'end_move'}
