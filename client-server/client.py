@@ -3,8 +3,9 @@ from time import sleep
 from HexagonProtocol import HexagonProtocol
 
 #################################
-a = HexagonProtocol([123, 123, 'aa'])
-string_a = a.getByteProtocol()
+a = HexagonProtocol({"type": "connect"})
+b = a.getByteProtocol()
+print(a.getDataFromByteStr(b))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = '188.244.6.5'
@@ -12,7 +13,7 @@ port = 1337
 s.connect((host, port))
 # s.send(string_a)
 
-s.send(bytes('hello', encoding='utf-8'))
+s.send(b)
 
 data = s.recv(1000000)
 
