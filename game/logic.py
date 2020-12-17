@@ -16,7 +16,10 @@ class Logic:
 
     @staticmethod
     def move_army_client(args: list):
+        print('moved')
+        print(chart.Chart().get_cell(args[0], args[1]).army)
         chart.Chart().get_cell(args[0], args[1]).army.move_army(args[2], args[3])
+        print(chart.Chart().get_cell(args[2], args[3]).army)
 
     def move_army(self, i, j, i1, j1):
         Logic.move_army_client([i, j, i1, j1])

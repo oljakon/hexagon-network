@@ -220,7 +220,7 @@ class NewGame(Layer):
         self.move_player = move_player
         self.go(1)
 
-    def on_mouse_press (self, x, y, buttons, modifiers):
+    def on_mouse_press(self, x, y, buttons, modifiers):
         self.button_exit = [1200, 650, 1265, 715]
         if self.button_exit[0] < x < self.button_exit[2] and \
             self.button_exit[1] < y < self.button_exit[3]:

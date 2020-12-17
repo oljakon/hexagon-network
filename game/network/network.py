@@ -51,12 +51,11 @@ class Network:
         # if type_action == 'start':
         #     return data
         # else:
-        while True:
-            data = self.s.recv(1000000)
-            dict_get = HexagonProtocol.getDataFromByteStr(data)
-            print('с сервака:', dict_get)
-            if dict_get['type'] == 'move':
-                self.sig_move_army.emit(dict_get['data'])
+        # while True:
+        data = self.s.recv(1000000)
+        dict_get = HexagonProtocol.getDataFromByteStr(data)
+        if dict_get['type'] == 'move':
+            self.sig_move_army.emit(dict_get['data'])
                 # if data == self.player:
                 #     self.unlock_player.emit()
                 #     return
