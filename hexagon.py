@@ -6,23 +6,35 @@
 import cocos
 from cocos.director import director
 from cocos.scene import Scene
-from cocos.layer import MultiplexLayer
-from game import *
-from game import logic
+from cocos.layer import MultiplexLayer, pyglet
+from cocos.layer import *
+from game import session
+from game import menu
+from game.menu import *
 from game.logic import *
 
 from sys import platform
+# from PyQt5.QtCore import pyqtSignal, QObject
+
+class CommunicateMain(QObject):
+    sig = pyqtSignal()
 
 class MouseDisplay(cocos.layer.Layer):
     """Класс реагирования на нажатия мыши"""
     is_event_handler = True
-    waiting_other_players = False
-    
+    waiting_other_players = True
+
     def __init__(self):
         super().__init__()
+        self.communicate = CommunicateMain()
         self.menu = False
         self.rules = False
         self.endgame = False
+        self.communicate.sig.connect(self.unlock_game)
+        self.logic = Logic(self.communicate.sig)
+
+    def unlock_game(self):
+        self.waiting_other_players = False
         
     def on_key_press(self, key, _):
         """Обработка нажатий на клавиатуру"""
@@ -76,7 +88,7 @@ class MouseDisplay(cocos.layer.Layer):
 
                         if entered_cell.army and entered_cell.army.player == game_session.move_player and not game_session.is_moving:
                             """добавление подсветки армии при нажатии на нее"""
-                            Logic.add_podsvet(entered_cell.i, entered_cell.j)
+                            self.logic.add_podsvet(entered_cell.i, entered_cell.j)
                             game_session.is_moving = True
                             game_session.last_entered_cell = entered_cell
 
@@ -86,13 +98,13 @@ class MouseDisplay(cocos.layer.Layer):
 
                             if not chart.Chart().get_cell(i, j).army.step(i, j, i1, j1):
                                 """нажатие на неподсвеченную клетку, для которой работает подсветка"""
-                                Logic.delete_podsvet(i, j)
+                                self.logic.delete_podsvet(i, j)
                                 game_session.is_moving = False
                                 game_session.last_entered_cell = None
 
                             else:
                                 """передвижение армии (внутри передвижения удаляется подсветка)"""
-                                Logic.move_army(i, j, i1, j1)
+                                self.logic.move_army(i, j, i1, j1)
                                 game_session.is_moving = False
                                 game_session.last_entered_cell = None
 
@@ -118,7 +130,7 @@ class MouseDisplay(cocos.layer.Layer):
                     elif button in PLUS:
                         self.hiring.enter_plus(button, self.entered_cell.town.type_city)
                     elif button == OK:
-                        Logic.enter_ok(self.hiring, self.entered_cell)
+                        self.logic.enter_ok(self.hiring, self.entered_cell)
                         self.hiring.close_window()
                         self.menu = False
 
