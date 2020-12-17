@@ -30,19 +30,16 @@ class NetSession:
             return max_id + 1
     
     def SendToAll(self, data: dict) -> None:
-        protocol = HexagonProtocol(data)
-        byte_str = protocol.getByteProtocol()
+        byte_str = HexagonProtocol.getByteStrFromData(data)
         for player in self.players:
             self.players[player].send(byte_str)
             
     def SendToOne(self, data:dict, player_id: int) -> None:
-        protocol = HexagonProtocol(data)
-        byte_str = protocol.getByteProtocol()
+        byte_str = HexagonProtocol.getByteStrFromData(data)
         self.players[player_id].send(byte_str)
     
     def SendExceptOne(self, data:dict, player_id: int) -> None:
-        protocol = HexagonProtocol(data)
-        byte_str = protocol.getByteProtocol()
+        byte_str = HexagonProtocol.getByteStrFromData(data)
         for player in self.players:
             if player != player_id:
                 self.players[player].send(byte_str)
@@ -64,9 +61,7 @@ class NetSessionControl:
             if (len(self.sessions) == 0) or (self.sessions[len(self.sessions) - 1].IsFull()):
                 self.sessions.append(NetSession(self.max_players))
             player_id = self.sessions[len(self.sessions) - 1].AddPlayer(sock)
-            protocol = HexagonProtocol({"type": "connect", "session": len(self.sessions) - 1, "player": player_id})
-            byte_str = protocol.getByteProtocol()
-            print(protocol.getDataFromByteStr(byte_str))
+            byte_str = HexagonProtocol.getByteStrFromData({"type": "connect", "session": len(self.sessions) - 1, "player": player_id})
             print(byte_str)
             sock.send(byte_str)
             if self.sessions[len(self.sessions) - 1].IsFull():
