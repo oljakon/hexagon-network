@@ -54,6 +54,7 @@ class Network:
         while True:
             data = self.s.recv(1000000)
             dict_get = HexagonProtocol.getDataFromByteStr(data)
+            print('с сервака:', dict_get)
             if dict_get['type'] == 'move':
                 self.sig_move_army(dict_get['data'])
                 # if data == self.player:
