@@ -101,3 +101,4 @@ ENV/
 
 #IDE minor files
 *.idea*
+__init__.py
