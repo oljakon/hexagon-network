@@ -40,7 +40,8 @@ class Network:
         # data = self.wait_server()
         # проверка что data == start
         # if self.player == dict_get['type']: # тут нужно получить номер игрока который ходит от сервера
-        self.unlock_player.emit()
+        if self.player == 0:
+            self.unlock_player.emit()
 
     def __del__(self):
         self.s.close()
