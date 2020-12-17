@@ -69,7 +69,7 @@ class Session():
                    and chart.Chart().get_cell(i, j).properties['player'] ==\
                    self.move_player:
                     chart.Chart().get_cell(i, j).town.spawn()
-        self.move_player = self.move_player % self.num  + 1
+        self.move_player = self.move_player % self.num + 1
         flag_isplaying = False
         for i in range(len(chart.Chart().cells)):
             for j in range(len(chart.Chart().cells[0])):
@@ -90,4 +90,5 @@ class Session():
         self.move_name = self.names[self.move_player - 1]
         self.is_moving = False
         self.last_entered_cell = None
+
 
