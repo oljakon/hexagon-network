@@ -66,7 +66,7 @@ class Network:
         self.s.send(send_mes_bit)
         print('end_move sended')
 
-        self.wait_server()
+        # self.wait_server()
 
     def move(self, i, j, i1, j1):
         send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'move', 'data': [i, j, i1, j1]}
