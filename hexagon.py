@@ -152,7 +152,7 @@ if platform == 'darwin':
 else:
     director.init(width=window_w, height=window_h)
 
-game_session = session.Session(4, ["Player 1", "Player 2", "Player 3", "Player 4"])
+game_session = session.Session(2, ["Player 1", "Player 2"])
 
 scene = Scene(MouseDisplay())
 scene.add(MultiplexLayer(
