@@ -8,15 +8,14 @@ class CommunicateLogic(QObject):
 class Logic:
 
     """в методе происходит передвижение армии + сражение"""
-    def __init__(self, sig):
+    def __init__(self, sig, sig_chg_move):
         self.sig_move_army = CommunicateLogic()
         self.sig_move_army.sig.connect(self.move_army_client)
 
-        self.network = Network(sig, self.sig_move_army.sig)
+        self.network = Network(sig, self.sig_move_army.sig, sig_chg_move)
 
     @staticmethod
     def move_army_client(args: list):
-        print('moved')
         print(chart.Chart().get_cell(args[0], args[1]).army)
         chart.Chart().get_cell(args[0], args[1]).army.move_army(args[2], args[3])
         print(chart.Chart().get_cell(args[2], args[3]).army)

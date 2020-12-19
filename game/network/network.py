@@ -9,9 +9,10 @@ class Network:
     # @staticmethod
     # def __send(message):
     #     print(message)
-    def __init__(self, sig: pyqtSignal, sig_move_army: pyqtSignal):
+    def __init__(self, sig: pyqtSignal, sig_move_army: pyqtSignal, sig_chg_move: pyqtSignal):
         self.unlock_player = sig
         self.sig_move_army = sig_move_army
+        self.sig_chg_move = sig_chg_move
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         host = '188.244.6.5'
         port = 1322
@@ -46,19 +47,17 @@ class Network:
     def __del__(self):
         self.s.close()
 
-    def wait_server(self, type_action=""):
-
-        # if type_action == 'start':
-        #     return data
-        # else:
-        # while True:
-        data = self.s.recv(1000000)
-        dict_get = HexagonProtocol.getDataFromByteStr(data)
-        if dict_get['type'] == 'move':
-            self.sig_move_army.emit(dict_get['data'])
-                # if data == self.player:
-                #     self.unlock_player.emit()
-                #     return
+    def wait_server(self):
+        while True:
+            data = self.s.recv(1000000)
+            dict_get = HexagonProtocol.getDataFromByteStr(data)
+            if dict_get['type'] == 'move':
+                self.sig_move_army.emit(dict_get['data'])
+            if dict_get['type'] == 'end_move':
+                self.sig_chg_move.emit()
+                if (dict_get['player'] + 1) % 4 == self.player:
+                    self.unlock_player.emit()
+                    break
 
     def end_move(self):
         send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'end_move'}

@@ -27,16 +27,30 @@ class MouseDisplay(cocos.layer.Layer):
     def __init__(self):
         super().__init__()
         self.communicate = CommunicateMain()
+        self.communicateCngMove = CommunicateMain()
         self.menu = False
         self.rules = False
         self.endgame = False
         self.communicate.sig.connect(self.unlock_game)
-        self.logic = Logic(self.communicate.sig)
+        self.communicateCngMove.sig.connect(self.change_move)
+        self.logic = Logic(self.communicate.sig, self.communicateCngMove.sig)
+
+
+    def change_move(self):
+        game_session.change_move()
+        if game_session.endgame()[0]:
+            self.endgame = True
+            menu.Endgame.winner = game_session.endgame()[1]
+            scene.children[2][1].switch_to(5)
+        top_window.exit_animation()
+        top_window.update_status(game_session.move_player)
+        self.logic.end_move()
 
     def unlock_game(self):
         self.waiting_other_players = False
         
     def on_key_press(self, key, _):
+        print('key pressed: ', key)
         """Обработка нажатий на клавиатуру"""
         if self.waiting_other_players:
             self.logic.wait_other_player()
@@ -44,13 +58,7 @@ class MouseDisplay(cocos.layer.Layer):
         if not self.waiting_other_players:
             if key == pyglet.window.key.ENTER:
                 self.waiting_other_players = True
-                game_session.change_move()
-                if game_session.endgame()[0]:
-                    self.endgame = True
-                    menu.Endgame.winner = game_session.endgame()[1]
-                    scene.children[2][1].switch_to(5)
-                top_window.exit_animation()
-                top_window.update_status(game_session.move_player)
+                self.change_move()
 
             if key == pyglet.window.key.MOD_WINDOWS:
                 top_window.exit_animation()
@@ -68,17 +76,9 @@ class MouseDisplay(cocos.layer.Layer):
             elif not self.menu and not self.rules:
                 if menu.ButtonMap.button_end_move[0] < x < menu.ButtonMap.button_end_move[2] and \
                    menu.ButtonMap.button_end_move[1] < y < menu.ButtonMap.button_end_move[3]:
-                    """смена хода"""
-                    game_session.change_move()
-                    if game_session.endgame()[0]:
-                        self.endgame = True
-                        menu.Endgame.winner = game_session.endgame()[1]
-    #                    print(menu.Endgame.winner)
-                        scene.children[2][1].switch_to(5)
-                    """Пропуск анимации"""
-                    top_window.exit_animation()
-                    """Отображает переход хода"""
-                    top_window.update_status(game_session.move_player)
+                    self.waiting_other_players = True
+                    self.change_move()
+
                 self.button_rule = [1200, 550, 1265, 615]
                 if self.button_rule[0] < x < self.button_rule[2] and \
                         self.button_rule[1] < y < self.button_rule[3]:
