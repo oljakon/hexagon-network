@@ -44,7 +44,6 @@ class MouseDisplay(cocos.layer.Layer):
             scene.children[2][1].switch_to(5)
         top_window.exit_animation()
         top_window.update_status(game_session.move_player)
-        self.logic.end_move()
 
     def unlock_game(self):
         self.waiting_other_players = False
@@ -59,6 +58,7 @@ class MouseDisplay(cocos.layer.Layer):
             if key == pyglet.window.key.ENTER:
                 self.waiting_other_players = True
                 self.change_move()
+                self.logic.end_move()
 
             if key == pyglet.window.key.MOD_WINDOWS:
                 top_window.exit_animation()
@@ -78,6 +78,7 @@ class MouseDisplay(cocos.layer.Layer):
                    menu.ButtonMap.button_end_move[1] < y < menu.ButtonMap.button_end_move[3]:
                     self.waiting_other_players = True
                     self.change_move()
+                    self.logic.end_move()
 
                 self.button_rule = [1200, 550, 1265, 615]
                 if self.button_rule[0] < x < self.button_rule[2] and \

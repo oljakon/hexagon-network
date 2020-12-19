@@ -48,6 +48,7 @@ class Network:
         self.s.close()
 
     def wait_server(self):
+        print('waiting')
         data = self.s.recv(1000000)
         dict_get = HexagonProtocol.getDataFromByteStr(data)
         if dict_get['type'] == 'move':
