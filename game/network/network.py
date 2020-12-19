@@ -48,21 +48,21 @@ class Network:
         self.s.close()
 
     def wait_server(self):
-        while True:
-            data = self.s.recv(1000000)
-            dict_get = HexagonProtocol.getDataFromByteStr(data)
-            if dict_get['type'] == 'move':
-                self.sig_move_army.emit(dict_get['data'])
-            if dict_get['type'] == 'end_move':
-                self.sig_chg_move.emit()
-                if (dict_get['player'] + 1) % 4 == self.player:
-                    self.unlock_player.emit()
-                    break
+        data = self.s.recv(1000000)
+        dict_get = HexagonProtocol.getDataFromByteStr(data)
+        if dict_get['type'] == 'move':
+            self.sig_move_army.emit(dict_get['data'])
+        if dict_get['type'] == 'end_move':
+            print('end_move got')
+            self.sig_chg_move.emit()
+            if (dict_get['player'] + 1) % 4 == self.player:
+                self.unlock_player.emit()
 
     def end_move(self):
         send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'end_move'}
         send_mes_bit = HexagonProtocol.getByteStrFromData(send_mes_dict)
         self.s.send(send_mes_bit)
+        print('end_move sended')
 
         self.wait_server()
 

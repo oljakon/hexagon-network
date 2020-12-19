@@ -42,6 +42,5 @@ class Logic:
     def wait_other_player(self):
         self.network.wait_server()
 
-    @staticmethod
-    def end_move():
-        Network.end_move()
+    def end_move(self):
+        self.network.end_move()

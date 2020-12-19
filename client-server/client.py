@@ -7,8 +7,8 @@ a = HexagonProtocol([123, 123, 'aa'])
 string_a = a.getByteProtocol()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = 'localhost'
-port = 8007
+host = '188.244.6.5'
+port = 1337
 s.connect((host, port))
 # s.send(string_a)
 
