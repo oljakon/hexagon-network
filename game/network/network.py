@@ -53,10 +53,11 @@ class Network:
         if dict_get['type'] == 'move':
             self.sig_move_army.emit(dict_get['data'])
         if dict_get['type'] == 'end_move':
-            print('end_move got')
-            self.sig_chg_move.emit()
-            if (dict_get['player'] + 1) % 4 == self.player:
-                self.unlock_player.emit()
+            print('end_move got from player', dict_get['player'])
+            if dict_get['player'] != self.player:
+                self.sig_chg_move.emit()
+                if (dict_get['player'] + 1) % 4 == self.player:
+                    self.unlock_player.emit()
 
     def end_move(self):
         send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'end_move'}
