@@ -41,8 +41,7 @@ class HexagonProtocol:
         is_HexagonProtocol = True
         if HexagonProtocol.__bytes_start == byte_str[:len(HexagonProtocol.__bytes_start)] and \
                 HexagonProtocol.__bytes_end == byte_str[-len(HexagonProtocol.__bytes_end):]:
-            message = json.loads(byte_str[len(HexagonProtocol.__bytes_start)+1\
-                                          :-len(HexagonProtocol.__bytes_end)-1].decode(HexagonProtocol.__coding))
+            message = json.loads(byte_str[len(HexagonProtocol.__bytes_start)+1:-len(HexagonProtocol.__bytes_end)-1])
             return message
 
         else:
