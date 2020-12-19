@@ -37,16 +37,22 @@ class HexagonProtocol:
         return res_str
 
     @staticmethod
-    def getDataFromByteStr(byte_str: bytes) -> dict:
+    def getDataFromByteStr(byte_str: bytes) -> list:
         is_HexagonProtocol = True
         if HexagonProtocol.__bytes_start == byte_str[:len(HexagonProtocol.__bytes_start)] and \
                 HexagonProtocol.__bytes_end == byte_str[-len(HexagonProtocol.__bytes_end):]:
-            message = json.loads(byte_str[len(HexagonProtocol.__bytes_start)+1:-len(HexagonProtocol.__bytes_end)-1])
-            return message
+            bytes_list = byte_str.split(HexagonProtocol.__bytes_end)
+            dict_list = []
+            bytes_list.pop(-1)
+            for byte_dict in bytes_list:
+                byte_dict = byte_dict[len(HexagonProtocol.__bytes_start)+1:-1]
+                res = json.loads(byte_dict)
+                dict_list.append(res)
+            return dict_list
 
         else:
             is_HexagonProtocol = False
 
         if not is_HexagonProtocol:
             print('Unknown protocol')
-            return {}
+            return []
