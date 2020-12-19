@@ -90,7 +90,9 @@ class MouseDisplay(cocos.layer.Layer):
                     if chart.Chart().get_at_pixel(x, y):
                         entered_cell = chart.Chart().get_at_pixel(x, y)
 
-                        if entered_cell.army and entered_cell.army.player == game_session.move_player and not game_session.is_moving:
+                        if entered_cell.army \
+                                and entered_cell.army.player == game_session.move_player \
+                                and not game_session.is_moving:
                             """добавление подсветки армии при нажатии на нее"""
                             self.logic.add_podsvet(entered_cell.i, entered_cell.j)
                             game_session.is_moving = True

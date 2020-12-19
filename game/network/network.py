@@ -54,6 +54,7 @@ class Network:
     def wait_server(self):
         print('waiting')
         data = self.s.recv(1000000)
+        print(len(data))
         dict_get = HexagonProtocol.getDataFromByteStr(data)
         if dict_get['type'] == 'move':
             self.sig_move_army.emit(dict_get['data'])
