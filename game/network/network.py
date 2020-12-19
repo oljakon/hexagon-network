@@ -11,10 +11,12 @@ class Network:
     # @staticmethod
     # def __send(message):
     #     print(message)
-    def __init__(self, sig: pyqtSignal, sig_move_army: pyqtSignal, sig_chg_move: pyqtSignal):
+    def __init__(self, sig: pyqtSignal, sig_move_army: pyqtSignal, sig_chg_move: pyqtSignal, sig_add_podsvet: pyqtSignal, sig_delete_podsvet: pyqtSignal):
         self.unlock_player = sig
         self.sig_move_army = sig_move_army
         self.sig_chg_move = sig_chg_move
+        self.sig_add_podsvet = sig_add_podsvet
+        self.sig_delete_podsvet = sig_delete_podsvet
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         host = '188.244.6.5'
         port = 1322
@@ -55,7 +57,11 @@ class Network:
         dict_get = HexagonProtocol.getDataFromByteStr(data)
         if dict_get['type'] == 'move':
             self.sig_move_army.emit(dict_get['data'])
-        if dict_get['type'] == 'end_move':
+        elif dict_get['type'] == 'add_podsvet':
+            self.sig_add_podsvet.emit(dict_get['data'])
+        elif dict_get['type'] == 'delete_podsvet':
+            self.sig_delete_podsvet.emit(dict_get['data'])
+        elif dict_get['type'] == 'end_move':
             print('end_move got from player', dict_get['player'])
             if dict_get['player'] != self.player:
                 self.sig_chg_move.emit()
@@ -75,13 +81,15 @@ class Network:
         send_mes_bit = HexagonProtocol.getByteStrFromData(send_mes_dict)
         self.s.send(send_mes_bit)
 
-    @staticmethod
-    def add_podsvet(i, j):
-        print('add podsvet for cell ' + str(i) + ' ' + str(j))
+    def add_podsvet(self, i, j):
+        send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'add_podsvet', 'data': [i, j]}
+        send_mes_bit = HexagonProtocol.getByteStrFromData(send_mes_dict)
+        self.s.send(send_mes_bit)
 
-    @staticmethod
-    def delete_podsvet(i, j):
-        print('delete podsvet for cell ' + str(i) + ' ' + str(j))
+    def delete_podsvet(self, i, j):
+        send_mes_dict = {'session': self.session, 'player': self.player, 'type': 'delete_podsvet', 'data': [i, j]}
+        send_mes_bit = HexagonProtocol.getByteStrFromData(send_mes_dict)
+        self.s.send(send_mes_bit)
 
     @staticmethod
     def buyArmy(cell):
