@@ -58,9 +58,10 @@ class MouseDisplay(cocos.layer.Layer):
         self.waiting_other_players = False
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if self.waiting_other_players:
-            # top_window.exit_animation()
-            self.logic.wait_other_player()
+        return
+        # if self.waiting_other_players:
+        #     # top_window.exit_animation()
+        #     self.logic.wait_other_player()
 
     def on_key_press(self, key, _):
         print('key pressed: ', key)
@@ -165,7 +166,7 @@ if platform == 'darwin':
 else:
     director.init(width=window_w, height=window_h)
 
-game_session = session.Session(3, ["Player 1", "Player 2", "Player 3"])
+game_session = session.Session(2, ["Player 1", "Player 2"])
 
 scene = Scene(MouseDisplay())
 scene.add(MultiplexLayer(
