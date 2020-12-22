@@ -59,7 +59,7 @@ class MouseDisplay(cocos.layer.Layer):
 
     def on_mouse_motion(self, x, y, dx, dy):
         if self.waiting_other_players:
-            top_window.exit_animation()
+            # top_window.exit_animation()
             self.logic.wait_other_player()
 
     def on_key_press(self, key, _):
