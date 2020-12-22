@@ -14,7 +14,8 @@ from game.menu import *
 from game.logic import *
 
 from sys import platform
-# from PyQt5.QtCore import pyqtSignal, QObject
+from PyQt5.QtCore import pyqtSignal, QObject
+from threading import Timer
 
 class CommunicateMain(QObject):
     sig = pyqtSignal()
@@ -26,6 +27,8 @@ class MouseDisplay(cocos.layer.Layer):
 
     def __init__(self):
         super().__init__()
+        t = Timer(1, self.wait)
+        t.start()
         self.communicate = CommunicateMain()
         self.communicateCngMove = CommunicateMain()
         self.menu = False
@@ -35,6 +38,13 @@ class MouseDisplay(cocos.layer.Layer):
         self.communicateCngMove.sig.connect(self.change_move)
         self.logic = Logic(self.communicate.sig, self.communicateCngMove.sig)
 
+
+    def wait(self):
+        if self.waiting_other_players:
+            self.logic.wait_other_player()
+
+        t = Timer(1, self.wait)
+        t.start()
 
     def change_move(self):
         game_session.change_move()
@@ -51,8 +61,8 @@ class MouseDisplay(cocos.layer.Layer):
     def on_key_press(self, key, _):
         print('key pressed: ', key)
         """Обработка нажатий на клавиатуру"""
-        if self.waiting_other_players:
-            self.logic.wait_other_player()
+        # if self.waiting_other_players:
+        #     self.logic.wait_other_player()
 
         if not self.waiting_other_players:
             if key == pyglet.window.key.ENTER:

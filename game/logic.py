@@ -58,7 +58,7 @@ class Logic:
 
     def enter_ok(self, hiring, entered_cell):
         mas_label = self.enter_ok_client([hiring, entered_cell, None])
-        self.network.buyArmy(hiring, entered_cell, mas_label)
+        # self.network.buyArmy(hiring, entered_cell, mas_label)
 
     def wait_other_player(self):
         self.network.wait_server()
