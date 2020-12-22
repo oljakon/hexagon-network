@@ -18,7 +18,14 @@ class Logic:
         self.sig_delete_podsvet = CommunicateLogic()
         self.sig_delete_podsvet.sig.connect(self.delete_podsvet_army)
 
-        self.network = Network(sig, self.sig_move_army.sig, sig_chg_move, self.sig_add_podsvet.sig, self.sig_delete_podsvet.sig)
+        self.sig_enter_ok = CommunicateLogic()
+        self.sig_enter_ok.sig.connect(self.enter_ok_client)
+
+        self.network = Network(sig, self.sig_move_army.sig,
+                               sig_chg_move,
+                               self.sig_add_podsvet.sig,
+                               self.sig_delete_podsvet.sig,
+                               self.sig_enter_ok.sig)
 
 
     @staticmethod
@@ -31,9 +38,11 @@ class Logic:
 
     @staticmethod
     def move_army_client(args: list):
-        print(chart.Chart().get_cell(args[0], args[1]).army)
         chart.Chart().get_cell(args[0], args[1]).army.move_army(args[2], args[3])
-        print(chart.Chart().get_cell(args[2], args[3]).army)
+
+    @staticmethod
+    def enter_ok_client(args: list):
+        args[0].enter_ok(args[1].town.type_city, args[2])
 
     def move_army(self, i, j, i1, j1):
         Logic.move_army_client([i, j, i1, j1])
@@ -47,10 +56,9 @@ class Logic:
         Logic.delete_podsvet_army([i,j])
         self.network.delete_podsvet(i, j)
 
-    @staticmethod
-    def enter_ok(hiring, entered_cell):
-        hiring.enter_ok(entered_cell.town.type_city)
-        Network.buyArmy(entered_cell)
+    def enter_ok(self, hiring, entered_cell):
+        mas_label = self.enter_ok_client([hiring, entered_cell, None])
+        self.network.buyArmy(hiring, entered_cell, mas_label)
 
     def wait_other_player(self):
         self.network.wait_server()
