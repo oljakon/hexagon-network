@@ -27,8 +27,8 @@ class MouseDisplay(cocos.layer.Layer):
 
     def __init__(self):
         super().__init__()
-        t = Timer(20, self.wait)
-        t.start()
+        # t = Timer(20, self.wait)
+        # t.start()
         self.communicate = CommunicateMain()
         self.communicateCngMove = CommunicateMain()
         self.menu = False
@@ -39,11 +39,11 @@ class MouseDisplay(cocos.layer.Layer):
         self.logic = Logic(self.communicate.sig, self.communicateCngMove.sig)
 
 
-    def wait(self):
-        self.on_key_press(104, '')
-
-        t = Timer(5, self.wait)
-        t.start()
+    # def wait(self):
+    #     self.on_key_press(104, '')
+    #
+    #     t = Timer(5, self.wait)
+    #     t.start()
 
     def change_move(self):
         game_session.change_move()
@@ -56,13 +56,14 @@ class MouseDisplay(cocos.layer.Layer):
 
     def unlock_game(self):
         self.waiting_other_players = False
-        
-    def on_key_press(self, key, _):
-        print('key pressed: ', key)
-        """Обработка нажатий на клавиатуру"""
+
+    def on_mouse_motion(self, x, y, dx, dy):
         if self.waiting_other_players:
             self.logic.wait_other_player()
 
+    def on_key_press(self, key, _):
+        print('key pressed: ', key)
+        """Обработка нажатий на клавиатуру"""
         if not self.waiting_other_players:
             if key == pyglet.window.key.ENTER:
                 self.waiting_other_players = True
