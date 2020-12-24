@@ -66,6 +66,10 @@ class MouseDisplay(cocos.layer.Layer):
     def on_key_press(self, key, _):
         print('key pressed: ', key)
         """Обработка нажатий на клавиатуру"""
+        if self.waiting_other_players:
+            # top_window.exit_animation()
+            self.logic.wait_other_player()
+
         if not self.waiting_other_players:
             if key == pyglet.window.key.ENTER:
                 self.waiting_other_players = True
