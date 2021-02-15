@@ -1,6 +1,6 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.py~
 *$py.class
 .DS_Store
 
@@ -98,3 +98,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#IDE minor files
+*.idea*

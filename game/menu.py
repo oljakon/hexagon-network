@@ -7,11 +7,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 import cocos
-import pyglet
-
-from pyglet import image
 from pyglet.gl import *
-from pyglet import font
 
 from cocos.actions import *
 from cocos.menu import Menu, MenuItem, zoom_in, zoom_out, fixedPositionMenuLayout
@@ -28,7 +24,7 @@ class SavedGames(Layer):
     is_event_handler = True
 
     def __init__(self):
-        super(SavedGames, self).__init__()
+        super().__init__()
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         self.button_exit = [1200, 650, 1265, 715]
@@ -59,7 +55,7 @@ class SavedGames(Layer):
         self.add(chart.BgLayer())
         self.add(chart.Chart())
         self.add(ButtonMap())
-        Top_Window().reinit(1) 
+        Top_Window().reinit(2)
 
 
 class Rules(Layer):
@@ -178,9 +174,10 @@ class MainMenu(Menu):
         item2 = MenuItem('Загрузить сохраненнную игру', self.saved_game)
         item3 = MenuItem('Правила игры', self.rules)
         item4 = MenuItem('Информация', self.info)
-        self.create_menu([item1, item2, item3, item4], zoom_in(), zoom_out(),
+        item5 = MenuItem('Выход', self.on_quit)
+        self.create_menu([item1, item2, item3, item4, item5], zoom_in(), zoom_out(),
                          layout_strategy=fixedPositionMenuLayout(
-                             [(650, 450), (650, 350), (650, 250), (650, 150)]))
+                             [(650, 450), (650, 350), (650, 250), (650, 150), (650, 50)]))
 
     def new_game(self):
         self.parent.layers[4].go()
@@ -195,6 +192,9 @@ class MainMenu(Menu):
 
     def info(self):
         self.parent.switch_to(3)
+
+    def on_quit(self):
+        exit(0)
 
 
 class BackgroundLayer(ColorLayer):
@@ -215,8 +215,9 @@ class NewGame(Layer):
     """Слой для меню для загрузки новой игры"""
     is_event_handler = True
 
-    def __init__(self):
+    def __init__(self, move_player):
         super(NewGame, self).__init__()
+        self.move_player = move_player
         self.go(1)
 
     def on_mouse_press (self, x, y, buttons, modifiers):
@@ -243,7 +244,7 @@ class NewGame(Layer):
         if new:
             # Сюда программа зайдет один раз при инициализации слоев MultiplexLayer
             self.map_layer = chart.generate(data, SIZE)
-            Top_Window(1) # Инициализируем Top_Window впервые           
+            Top_Window(self.move_player) # Инициализируем Top_Window впервые
         else:
             self.map_layer = chart.generate(data, SIZE, 0, 0) # Делаем апдейт
             
@@ -256,7 +257,7 @@ class NewGame(Layer):
         self.add(chart.BgLayer())
         self.add(chart.Chart())
         self.add(ButtonMap())
-        Top_Window().reinit(1)
+        Top_Window().reinit()
 
 
 class GameRules():
@@ -346,10 +347,12 @@ class Top_Window(metaclass=chart.Singleton):
 
     def __init__(self, move):
         super(Top_Window, self).__init__()
-        self.reinit(move)
+        self.move_player = move
+        self.reinit()
         
-    def reinit(self, move):
+    def reinit(self):
         """Происходит реинициализация класса по заданному ходу"""
+        move = self.move_player
         self.bg = Sprite("light95.png")
         self.bg.scale_x = 0.09
         self.bg.scale_y = 0.115
