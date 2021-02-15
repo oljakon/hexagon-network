@@ -4,15 +4,12 @@
 Задний слой с водой;
 Синглтон для карты.
 """
-import cocos
-from cocos.tiles import Tile, HexCell, HexMap, HexMapLayer
-from cocos.layer import Layer, ColorLayer
+
+from cocos.tiles import Tile, HexCell, HexMapLayer
+from cocos.layer import ColorLayer
 from cocos.sprite import Sprite
-import pyglet
 from pyglet.gl import *
 from pyglet.resource import image
-import sys
-import os
 import pickle
 from random import randint
 
@@ -94,6 +91,7 @@ class Chart(HexMapLayer, metaclass=Singleton):
         HexMapLayer.__init__(self, name, info, size, cells)
     def update(self, name, info, size, cells):
         HexMapLayer.__init__(self, name, info, size, cells)
+
 
     
 class BgLayer(ColorLayer):

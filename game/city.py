@@ -3,7 +3,7 @@ from game import army
 from game import chart
 from cocos.sprite import Sprite
 
-class City():
+class City:
     '''Класс города, генерируются отряды'''
     
     COST = [2, 4, 4, 8]
@@ -205,7 +205,10 @@ class Hiring_window():
                 self.close_window()
                 self.draw()
 
-    def enter_ok(self, typ):
+    def enter_ok(self, typ, mas_label=None):
+        if mas_label != None:
+            self.mas_label = mas_label
+
         if typ == self.BASE:
             for i in range(len(self.mas_label)):
                 count = int(self.mas_label[i])
@@ -214,6 +217,9 @@ class Hiring_window():
         elif typ == self.CITY:
             if int(self.mas_label[0]):
                 self.cell.town.hire(int(self.mas_label[0]), self.type_unit)
+
+        return self.mas_label
+
                 
     @staticmethod
     def get_at_pixel(x, y):
